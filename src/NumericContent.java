@@ -1,4 +1,5 @@
-package PACKAGE_NAME;
-
-public class NumericContent {
+public class NumericContent extends Content {
+    public NumericContent(String rawContent) {
+        super(rawContent);
+    }
 }

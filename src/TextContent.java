@@ -1,4 +1,5 @@
-package PACKAGE_NAME;
-
-public class TextContent {
+public class TextContent extends Content {
+    public TextContent(String rawContent) {
+        super(rawContent);
+    }
 }

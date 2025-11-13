@@ -1,15 +1,55 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Spreadsheet spreadsheet = new Spreadsheet();
+        Scanner scanner = new Scanner(System.in);
+        int choice;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        do {
+            System.out.println("\n===== Spreadsheet Menu =====");
+            System.out.println("1. Create / Set Cell Content");
+            System.out.println("2. Display Spreadsheet");
+            System.out.println("3. Save Spreadsheet");
+            System.out.println("4. Load Spreadsheet");
+            System.out.println("0. Exit");
+            System.out.print("Enter choice: ");
+            choice = Integer.parseInt(scanner.nextLine());
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter cell coordinate (e.g., A1): ");
+                    String coord = scanner.nextLine().toUpperCase();
+                    System.out.print("Enter cell content: ");
+                    String content = scanner.nextLine();
+                    spreadsheet.setCellContent(coord, content);
+                    break;
+
+                case 2:
+                    spreadsheet.displaySpreadsheet();
+                    break;
+
+                case 3:
+                    System.out.print("Enter filename to save: ");
+                    String saveFile = scanner.nextLine();
+                    spreadsheet.saveToFile(saveFile);
+                    break;
+
+                case 4:
+                    System.out.print("Enter filename to load: ");
+                    String loadFile = scanner.nextLine();
+                    spreadsheet.loadFromFile(loadFile);
+                    break;
+
+                case 0:
+                    System.out.println("Exiting program...");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Try again.");
+            }
+        } while (choice != 0);
+
+        scanner.close();
     }
 }
